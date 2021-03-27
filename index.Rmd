@@ -1,0 +1,134 @@
+---
+title: The Grammar of Interactive Explanatory Model Analysis
+#subtitle: Landing Page
+#date: "`r Sys.Date()`"
+output: rmdformats::html_docco
+---
+
+<!-- Place this tag in your head or just before your close body tag. -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+<style type="text/css">
+.main-container {
+  max-width: 1250px;
+}
+@media (min-width: 992px) {
+  .col-md-offset-1 {
+    margin-left: 0%;
+  }
+  .col-md-10 {
+    width: 100%;
+}
+}
+
+h1.title {
+    text-transform: none !important;
+}
+
+.r2d3 {
+  position: relative !important;
+}
+
+a {
+  color: #337ab7;
+}
+</style>
+
+## Preprint
+
+Baniecki, H., and Biecek, P. **The Grammar of Interactive Explanatory Model Analysis** *arXiv:2005.00497* 2021
+
+Available at https://arxiv.org/abs/2005.00497
+
+## Abstract 
+
+*We cannot sufficiently explain a black-box machine learning model using a~single method that gives only one perspective. Isolated explanations are prone to misunderstanding, which inevitably leads to wrong or simplistic reasoning. This problem is known as the Rashomon effect and refers to diverse, even contradictory interpretations of the same phenomenon. Surprisingly, the majority of methods developed for explainable machine learning focus on a single aspect of the model behavior. In contrast, we showcase the problem of explainability as an interactive and sequential analysis of a model. This paper presents how different Explanatory Model Analysis (EMA) methods complement each other and why it is essential to juxtapose them together. The introduced process of Interactive EMA derives from the algorithmic side of explainable machine learning and aims to embrace ideas developed in cognitive sciences. We formalize the grammar of IEMA to allow for an unrestricted human-model dialogue. IEMA is implemented in the human-centered framework that adopts interactivity, customizability and automation as its main traits. Combined, these methods enhance the responsible machine learning approach.* 
+
+<img src="https://raw.githubusercontent.com/MI2DataLab/iema/main/figures/blackbox.png" alt="Black-Box" style="max-width:100%;">
+
+## IEMA
+
+<img src="https://raw.githubusercontent.com/MI2DataLab/iema/main/figures/iema.png" alt="The Grammar of Interactive Explanatory Model Analysis" style="max-width:100%;">
+
+<img src="https://raw.githubusercontent.com/MI2DataLab/iema/main/figures/long.gif" alt="modelStudio.gif" style="max-width:100%;">
+
+## Dashboard <a class="github-button" href="https://github.com/MI2DataLab/iema" data-color-scheme="no-preference: light; light: light; dark: dark;" data-size="large" data-show-count="true" aria-label="Star MI2DataLab/iema on GitHub">iema</a>
+
+```{r echo=FALSE, warning=FALSE, message=FALSE, }
+library(DALEX)
+
+data <- fifa
+data$wage_eur <- data$overall <- data$potential <- data$nationality <- NULL
+data$value_eur <- log10(data$value_eur)
+set.seed(1313)
+
+library(gbm)
+
+# make a model
+
+model <- gbm(value_eur ~ . ,
+             data = data,
+             n.trees = 300,
+             interaction.depth = 4, 
+             distribution = "gaussian")
+
+# wrap the model into an explainer
+
+explainer <- DALEX::explain(
+  model, 
+  data = data[,-1], 
+  y = 10^data$value_eur, 
+  predict_function = function(m,x) 10^predict(m, x, n.trees = 300),
+  label = 'gbm',
+  verbose = FALSE
+)
+
+library(modelStudio)
+
+# use parallelMap to speed up the computation
+
+options(
+  parallelMap.default.mode        = "socket",
+  parallelMap.default.cpus        = 4,
+  parallelMap.default.show.info   = FALSE
+)
+
+# pick observations
+fifa_selected <- data[1:40, ]
+fifa_selected <- rbind(
+  fifa_selected["R. Lewandowski",],
+  fifa_selected[rownames(fifa_selected) != "R. Lewandowski",]
+)
+
+# make a studio for the model
+iema_ms <- modelStudio(
+  explainer, 
+  new_observation = fifa_selected,
+  B = 50, # raised for more detailed results, could be 15
+  parallel = TRUE,
+  rounding_function = signif, digits = 5,
+  options = ms_options(
+    #show_boxplot = FALSE,
+    margin_left = 160,
+    margin_ytitle = 100,
+    ms_title = "Interactive Studio for GBM model on FIFA-20 data"
+  )
+)
+
+iema_ms
+```
+
+Created using **modelStudio**: https://github.com/ModelOriented/modelStudio
+
+## Citation
+
+To cite [this work](https://arxiv.org/abs/2005.00497), use the following BibTeX entry:
+
+```
+@article{baniecki-iema,
+  title={{The Grammar of Interactive Explanatory Model Analysis}}, 
+  author={Hubert Baniecki and Przemyslaw Biecek},
+  journal={arXiv:2005.00497},
+  year={2021},
+  url={https://arxiv.org/abs/2005.00497}
+}
+```
