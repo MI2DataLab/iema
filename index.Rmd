@@ -35,13 +35,13 @@ a {
 
 ## Preprint
 
-Baniecki, H., and Biecek, P. **The Grammar of Interactive Explanatory Model Analysis** *arXiv:2005.00497* 2021
+Hubert Baniecki, Dariusz Parzych, and Przemyslaw Biecek. **The Grammar of Interactive Explanatory Model Analysis**. arXiv preprint *arXiv:2005.00497v4*, 2022. 
 
-Available at https://arxiv.org/abs/2005.00497
+Available at https://arxiv.org/abs/2005.00497v4.
 
 ## Abstract 
 
-*The growing need for in-depth analysis of predictive models leads to a series of new methods for explaining their local and global properties.  Which of these methods is the best? It turns out that this is an ill-posed question. One cannot sufficiently explain a black-box machine learning model using a single method that gives only one perspective. Isolated explanations are prone to misunderstanding, which inevitably leads to wrong or simplistic reasoning. This problem is known as the Rashomon effect and refers to diverse, even contradictory interpretations of the same phenomenon. Surprisingly, the majority of methods developed for explainable machine learning focus on a single aspect of the model behavior. In contrast, we showcase the problem of explainability as an interactive and sequential analysis of a model. This paper presents how different Explanatory Model Analysis (EMA) methods complement each other and why it is essential to juxtapose them together. The introduced process of Interactive EMA (IEMA) derives from the algorithmic side of explainable machine learning and aims to embrace ideas developed in cognitive sciences. We formalize the grammar of IEMA to describe potential human-model dialogues. IEMA is implemented in the human-centered framework that adopts interactivity, customizability and automation as its main traits. Combined, these methods enhance the responsible approach to predictive modeling.* 
+*The growing need for in-depth analysis of predictive models leads to a series of new methods for explaining their local and global properties. Which of these methods is the best? It turns out that this is an ill-posed question. One cannot sufficiently explain a black-box machine learning model using a single method that gives only one perspective. Isolated explanations are prone to misunderstanding, leading to wrong or simplistic reasoning. This problem is known as the Rashomon effect and refers to diverse, even contradictory, interpretations of the same phenomenon. Surprisingly, most methods developed for explainable and responsible machine learning focus on a single-aspect of the model behavior. In contrast, we showcase the problem of explainability as an interactive and sequential analysis of a model. This paper proposes how different Explanatory Model Analysis (EMA) methods complement each other and discusses why it is essential to juxtapose them. The introduced process of Interactive EMA (IEMA) derives from the algorithmic side of explainable machine learning and aims to embrace ideas developed in cognitive sciences. We formalize the grammar of IEMA to describe potential human-model dialogues. It is implemented in a widely used human-centered open-source software framework that adopts interactivity, customizability and automation as its main traits. We conduct a user study to evaluate the usefulness of IEMA, which indicates that an interactive sequential analysis of a model increases the performance and confidence of human decision making.* 
 
 <img src="https://raw.githubusercontent.com/MI2DataLab/iema/main/figures/blackbox.png" alt="Black-Box" style="max-width:100%;">
 
@@ -117,18 +117,18 @@ iema_ms <- modelStudio(
 iema_ms
 ```
 
-Created using **modelStudio**: https://github.com/ModelOriented/modelStudio
+Created using **modelStudio**: https://github.com/ModelOriented/modelStudio.
 
 ## Citation
 
-To cite [this work](https://arxiv.org/abs/2005.00497), use the following BibTeX entry:
+To cite [this work](https://arxiv.org/abs/2005.00497v4), use the following BibTeX entry:
 
 ```
 @article{baniecki-iema,
   title={{The Grammar of Interactive Explanatory Model Analysis}}, 
-  author={Hubert Baniecki and Przemyslaw Biecek},
-  journal={arXiv:2005.00497},
-  year={2021},
-  url={https://arxiv.org/abs/2005.00497}
+  author={Hubert Baniecki and Dariusz Parzych and Przemyslaw Biecek},
+  journal={arXiv preprint, arXiv:2005.00497v4},
+  year={2022},
+  url={https://arxiv.org/abs/2005.00497v4}
 }
 ```
