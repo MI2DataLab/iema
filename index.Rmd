@@ -51,7 +51,15 @@ Available at https://arxiv.org/abs/2005.00497v4.
 
 <img src="https://raw.githubusercontent.com/MI2DataLab/iema/main/figures/long.gif" alt="modelStudio.gif" style="max-width:100%;">
 
-## Dashboard <a class="github-button" href="https://github.com/MI2DataLab/iema" data-color-scheme="no-preference: light; light: light; dark: dark;" data-size="large" data-show-count="true" aria-label="Star MI2DataLab/iema on GitHub">iema</a>
+## User Study
+
+<img src="https://raw.githubusercontent.com/MI2DataLab/iema/main/figures/table4.png" style="max-width:100%;">
+
+<img src="https://raw.githubusercontent.com/MI2DataLab/iema/main/figures/table5.png" style="max-width:100%;">
+
+<img src="https://raw.githubusercontent.com/MI2DataLab/iema/main/figures/figure14.png" style="max-width:100%;">
+
+## Dashboard
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE, }
 library(DALEX)
